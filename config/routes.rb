@@ -3,4 +3,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  namespace :api do
+    resources :registrations, only: [:create]
+    resources :sessions, only: [:create, :delete]
+
+    match '*path', via: :all, to: 'route_not_found#route_not_found'
+  end
 end
