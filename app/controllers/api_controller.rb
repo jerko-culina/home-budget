@@ -7,6 +7,7 @@ class ApiController < ApplicationController
   rescue_from UnauthorizedError, with: :unauthorized_error
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
+  skip_before_action :verify_authenticity_token
   before_action :verify_requested_format!
   
   private
