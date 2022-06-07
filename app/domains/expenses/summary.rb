@@ -5,7 +5,7 @@ module Expenses
 
     def initialize(user:, summary_by: nil)
       @user = user
-      @summary_by = CATEGORIES.include?(summary_by) ? summary_by : CATEGORIES.first
+      @summary_by = CATEGORIES.include?(summary_by.to_sym) ? summary_by.to_sym : CATEGORIES.first
     end
 
     def all
@@ -38,7 +38,7 @@ module Expenses
       <<-SQL
       SELECT 
         'category' AS kind,
-        c.name, 
+        c.name AS name, 
         t.amount_cents
       FROM (
         SELECT 
@@ -47,7 +47,7 @@ module Expenses
         FROM expenses 
         GROUP BY category_id
       ) t
-      JOIN categories c AS t.category_id = c.id
+      JOIN categories c ON t.category_id = c.id
       SQL
     end
   end

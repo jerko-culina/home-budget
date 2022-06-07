@@ -8,9 +8,11 @@ module Api
 
       field :name do |object|
         name = object[:name]
-        return name if name.is_a?(String)
-
-        Date::MONTHNAMES[name]
+        if name.is_a?(String)
+          name
+        else
+          Date::MONTHNAMES[name]
+        end
       end
     end
   end
