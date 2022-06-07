@@ -22,6 +22,7 @@ rails db:setup
 ```
   Authorization: b74dCaZwiEUmV0kE03tvksECtfmDq3xMU856FCAVWRJ5GABWbOSMy5FHw6yy
 ```
+`Authorization` header value is returned on register user and create session requests as `auth_token`.
 
 - Postman collection 
 ```
