@@ -12,11 +12,11 @@ module Api
     end
 
     def create
-      category = Categories::Creator.new(user: current_user).category
+      creator = Categories::Creator.new(user: current_user)
 
-      category.create(create_params)
+      creator.create(create_params)
       
-      respond_with category, serializer: Api::CategorySerializer
+      respond_with creator.category, serializer: Api::CategorySerializer
     end
 
     def update
@@ -29,7 +29,7 @@ module Api
       respond_with updater.category, serializer: Api::CategorySerializer
     end
 
-    def delete
+    def destroy
       category = Categories::Finder.new(user: current_user).find(params[:id])
 
       category.destroy

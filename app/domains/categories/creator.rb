@@ -13,5 +13,10 @@ module Categories
     def category
       @category ||= Category.new(user: user)
     end
+
+    def create(params)
+      category.assign_attributes(params)
+      category.save
+    end
   end
 end
