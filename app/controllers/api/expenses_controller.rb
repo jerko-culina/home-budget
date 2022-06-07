@@ -34,7 +34,7 @@ module Api
       params.require(:expense).permit(::Expenses::Creator.permitted_params)
     end
 
-    def update_expense
+    def update_params
       params.require(:expense).permit(::Expenses::Updater.permitted_params)
     end
   end

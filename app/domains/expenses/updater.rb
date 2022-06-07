@@ -12,7 +12,9 @@ module Expenses
     end
     
     def update_expense(params)
-      expense.category = Categories::Finder.new(user: user).find_by(id: params[:category_id])
+      if params[:category_id]
+        expense.category = Categories::Finder.new(user: user).find_by(id: params[:category_id])
+      end
       expense.assign_attributes(params.except(:category_id))
       expense.save
     end
