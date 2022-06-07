@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
     resources :expenses
     resources :registrations, only: [:create]
-    resources :sessions, only: [:create, :delete]
+    resource :sessions, only: [:create, :destroy]
 
     match '*path', via: :all, to: 'route_not_found#route_not_found'
   end

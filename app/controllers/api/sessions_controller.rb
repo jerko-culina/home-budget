@@ -1,5 +1,6 @@
 module Api
-  class SessionsController < AuthenitcatedController
+  class SessionsController < AuthenticatedController
+    skip_before_action :verify_authorization_header!, only: [:create]
     skip_before_action :authenticate_user!, only: [:create]
 
     def create
@@ -12,8 +13,8 @@ module Api
       end
     end
 
-    def delete
-      Auth::Sessions::Destoryer.new(user: current_user).destroy
+    def destroy
+      Auth::Sessions::Destroyer.new(user: current_user).destroy
 
       head :ok
     end
